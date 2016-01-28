@@ -4,7 +4,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 </head>
 <body><div class="col-sm-6">
-<form onsubmit="cal.call(this); return false;">
+<form role="form" name="f1" onsubmit="cal.call(this); tot(); return false;">
 <script>
 function cal(){
 this.s1.innerHTML="";//清空輸出
@@ -51,14 +51,22 @@ this.form.t3.value=parseInt(this.value);
 }
 function nex(){
 var o={b:"不足",g:"過剩",w:"完全"};
-var r=new RegExp(this.t3.value+"\\D+[^"+o[this.optradio.value]+"]+>\s*(\\d+)\\.\\s"+o[this.optradio.value],"");console.log(r)
+var r=new RegExp(this.t3.value+"\\D+[^"+o[this.optradio.value]+"]+>\s*(\\d+)\\.\\s"+o[this.optradio.value],"");//console.log(r)
 var m=this.s1.innerHTML.match(r);
-console.log(m)
+//console.log(m)
 if(m!=null){
 this.t3.value=m[1];
 } else {
 this.t3.value="Not Found";
 }}
+function tot(){
+var o={b:"不足",g:"過剩",w:"完全"};
+var r=new RegExp(o[document.f1.optradio.value], "g");//console.log(r)
+var m=document.f1.s1.innerHTML.match(r);//console.log(m)
+if(m){document.f1.t4.value=m.length;
+} else {
+document.f1.t4.value=0;}
+}
 </script>
 <div class="row">
 <div class="col-xs-4">
@@ -74,7 +82,7 @@ this.t3.value="Not Found";
 <div class="row">
 <div class="col-xs-12">
   <label for="sel1">Result:</label>
-  <select size class="form-control" id="sel1" multiple name="s1" onclick="val.call(this)" style="height: 50vh;">
+  <select size class="form-control" id="sel1" multiple name="s1" onclick="val.call(this)" style="height: 40vh;">
     <!--<option></option>
     <option></option>
     <option></option>
@@ -89,9 +97,17 @@ this.t3.value="Not Found";
 </div>
 </div>
 <button type="button" class="btn btn-default" onclick="nex.call(this.form)">下一個</button>
+<div class="row">
+<div class="col-sm-8" onclick="tot();">
 <label class="radio-inline"><input type="radio" name="optradio" value="b" checked>不足數</label>
 <label class="radio-inline"><input type="radio" name="optradio" value="g">過剩數</label>
 <label class="radio-inline"><input type="radio" name="optradio" value="w">完全數</label>
+</div>
+<div class="col-xs-4">
+  <label for="ex6">Total:</label>
+  <input class="form-control" id="ex6" type="number" value="0" name="t4">
+</div>
+</div>
 Note: 必須先使用上面的計算功能算出區間內的所有數才可使用下面的這個功能依據上面結果搜尋，使用Ctrl-F即可更快搜尋
 </form></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
