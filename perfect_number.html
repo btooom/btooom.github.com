@@ -3,8 +3,7 @@
 <head>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 </head>
-<body>
-  <div class="container">
+<body><div class="col-sm-6">
 <form onsubmit="cal.call(this); return false;">
 <script>
 function cal(){
@@ -52,9 +51,9 @@ this.form.t3.value=parseInt(this.value);
 }
 function nex(){
 var o={b:"不足",g:"過剩",w:"完全"};
-var r=new RegExp(this.t3.value+"\\D*(\\d+)\\.\\s"+o[this.optradio.value],"");//console.log(r)
+var r=new RegExp(this.t3.value+"\\D+[^"+o[this.optradio.value]+"]+>\s*(\\d+)\\.\\s"+o[this.optradio.value],"");console.log(r)
 var m=this.s1.innerHTML.match(r);
-//console.log(m)
+console.log(m)
 if(m!=null){
 this.t3.value=m[1];
 } else {
@@ -62,11 +61,11 @@ this.t3.value="Not Found";
 }}
 </script>
 <div class="row">
-<div class="col-xs-2">
+<div class="col-xs-4">
   <label for="ex4">Min:</label>
   <input class="form-control" id="ex4" type="number" name="t2" value="1">
 </div>
-<div class="col-xs-2">
+<div class="col-xs-4">
   <label for="ex3">Max:</label>
   <input class="form-control" id="ex3" type="number" name="t1">
 </div>
@@ -84,7 +83,7 @@ this.t3.value="Not Found";
 </div>
 </div>
 <div class="row">
-<div class="col-xs-2">
+<div class="col-xs-4">
   <label for="ex5">Next:</label>
   <input class="form-control" id="ex5" type="number" name="t3">
 </div>
@@ -92,7 +91,7 @@ this.t3.value="Not Found";
 <button type="button" class="btn btn-default" onclick="nex.call(this.form)">下一個</button>
 <label class="radio-inline"><input type="radio" name="optradio" value="b" checked>不足數</label>
 <label class="radio-inline"><input type="radio" name="optradio" value="g">過剩數</label>
-<label class="radio-inline"><input type="radio" name="optradio" value="w">完全數</label><br>
+<label class="radio-inline"><input type="radio" name="optradio" value="w">完全數</label>
 Note: 必須先使用上面的計算功能算出區間內的所有數才可使用下面的這個功能依據上面結果搜尋，使用Ctrl-F即可更快搜尋
 </form></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
