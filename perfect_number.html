@@ -4,6 +4,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 </head>
 <body>
+  <div class="container">
 <form onsubmit="cal.call(this); return false;">
 <script>
 function cal(){
@@ -61,11 +62,11 @@ this.t3.value="Not Found";
 }}
 </script>
 <div class="row">
-<div class="col-xs-4">
+<div class="col-xs-2">
   <label for="ex4">Min:</label>
   <input class="form-control" id="ex4" type="number" name="t2" value="1">
 </div>
-<div class="col-xs-4">
+<div class="col-xs-2">
   <label for="ex3">Max:</label>
   <input class="form-control" id="ex3" type="number" name="t1">
 </div>
@@ -83,7 +84,7 @@ this.t3.value="Not Found";
 </div>
 </div>
 <div class="row">
-<div class="col-xs-4">
+<div class="col-xs-2">
   <label for="ex5">Next:</label>
   <input class="form-control" id="ex5" type="number" name="t3">
 </div>
@@ -93,7 +94,7 @@ this.t3.value="Not Found";
 <label class="radio-inline"><input type="radio" name="optradio" value="g">過剩數</label>
 <label class="radio-inline"><input type="radio" name="optradio" value="w">完全數</label>
 Note: 必須先使用上面的計算功能算出區間內的所有數才可使用下面的這個功能依據上面結果搜尋，使用Ctrl-F即可更快搜尋
-</form>
+</form></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </body>
