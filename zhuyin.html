@@ -1,0 +1,46 @@
+<script>
+var t1,inp,tex;
+onload=function(){t1=document.getElementById("t1");inp=document.getElementById("inp");tex=document.getElementById("tex");}
+function pla(){
+s=inp.value;
+i1=1;i2=1;
+a=tex.value.replace(/^\s*\//,"").replace(/\/\s*$/,"").split("/");
+if (a.length==s.length) {
+tim=setInterval(interv,parseInt(t1.value));}
+}
+function interv(){
+inp.value=s.substring(0,i1-1)+a[i1-1].substring(0,i2);
+i2++;
+if (i2>=a[i1-1].length) {
+i1++;
+i2=0;}
+if (i1>s.length) {
+inp.value=s;
+clearInterval(tim);
+}
+}
+var i1,i2,a=[],s,tim;
+
+var spli={"Digit3":0,"Digit4":0,"Digit6":0,"Digit7":0,"Space":0};
+function ke(e){
+var c=e.code;
+if (cod[c]!=null) {
+tex.value+=cod[c];
+if (c in spli) {
+  tex.value+="/";}}}
+
+var cod={"Digit1":"ㄅ","KeyQ":"ㄆ","KeyA":"ㄇ","KeyZ":"ㄈ","Digit2":"ㄉ","KeyW":"ㄊ","KeyS":"ㄋ",
+"KeyX":"ㄌ","KeyE":"ㄍ","KeyD":"ㄎ","KeyC":"ㄏ","KeyR":"ㄐ","KeyF":"ㄑ","KeyV":"ㄒ","Digit5":"ㄓ",
+"KeyT":"ㄔ","KeyG":"ㄕ","KeyB":"ㄖ","KeyY":"ㄗ","KeyH":"ㄘ","KeyN":"ㄙ","KeyU":"ㄧ","KeyJ":"ㄨ",
+"KeyM":"ㄩ","Digit8":"ㄚ","KeyI":"ㄛ","KeyK":"ㄜ","Comma":"ㄝ","Digit9":"ㄞ","KeyO":"ㄟ","KeyL":"ㄠ",
+"Period":"ㄡ","Digit0":"ㄢ","KeyP":"ㄣ","Semicolon":"ㄤ","Slash":"ㄥ","Minus":"ㄦ","Digit3":"ˇ","Digit4":"ˋ",
+"Digit6":"ˊ","Digit7":"˙","Space":" "};
+/*
+var s="ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄧㄨㄩㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦˇˋˊ˙ ";i=1
+function ke(e){
+
+o[e.code]=s.charAt(i-1);i++
+}*/
+</script>
+<html><head><style type="text/css"></style></head><body><textarea cols="100" rows="10" onkeydown="ke(event)" id="inp"></textarea><textarea cols="100" rows="10" id="tex">/</textarea><input type="button" onclick="pla()" value="play"><input type="number" id="t1" value="100">
+</body></html>
