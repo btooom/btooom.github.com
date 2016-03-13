@@ -1,0 +1,211 @@
+<script>
+var w1, mer;
+ope=function(){
+w1=open('http://www.facebook.com/dialog/oauth?client_id=470395029770355&redirect_uri=https%3A%2F%2Funlight.cc%2Fclose.html&display=popup','_blank');
+mer=setInterval(()=>{FB.getLoginStatus((s)=>{if(!(s.status!='connected'&&s.status!='not_authorized')){clearInterval(mer);if(w1!=null){w1.close();}$("#fblogin")[0].style.display="none";$("#ifr")[0].src="";$("#ifr")[0].src="https://cn.unlight.jp/";}},true);},2000);
+}
+window.fbAsyncInit=function() {
+FB.init({
+appId:'470395029770355',
+session:{},
+status:true,
+cookie:true,
+xfbml: false,
+version: 'v2.5'
+});
+FB.getLoginStatus(stat);
+};
+function stat(s) {
+if (s.status==='connected') {
+} else if (s.status==='not_authorized') {
+} else { onlo();$("#fblogin")[0].style.display="";if(window.stop){window.stop();} else { $("#ifr")[0].src=""; };return false;
+// the user isn't logged in to Facebook.
+} $("#fblogin")[0].style.display="none"; }
+(function(d, s, id){
+var js, fjs=d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) {return;}
+js=d.createElement(s); js.id = id;
+js.src="//connect.facebook.net/en_US/sdk.js";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+function onlo() {
+initcookie();
+$("#loa")[0].style.display="none";
+}
+onload=onlo;
+</script>
+
+<html><head><title>Unlight無廣告 「非官方！Unofficial」</title><meta name="viewport" content="width=762, initial-scale=1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="title" content="Unlight.cc Unofficial site for Unlight.">
+<meta name="description" content="Unlight.cc is a site that provides ads free service for users, which avoids from the annoying ads. And the site is free charge, we provide our service from donation. Please support us at 1. Paypal: btoom@qq.com 2. Alipay: btooom@qq.com 3. Bitcoin: Visit at https://www.maicoin.com/btooom or Send to 19Sbh7MNj9RiLm9DxBNANvyRmo3UBWXAfD.">
+<meta name="keywords" content="">
+<meta name="language" content="zh-hant"><script>
+function inf(obj) {
+  $("#t")[0].innerHTML="";
+  var tmp="";
+  for (var i=1; i<=obj.length; i++, tmp="") {
+    tmp+="<td>"+(new Date(obj[i-1][0])).toLocaleString()+"</td>"
+    for (var j=2; j<=obj[i-1].length; j++) {
+      if (!(j in {2:0,3:0,8:0})){continue;}
+      tmp+="<td>"+obj[i-1][j-1]+"</td>"
+    }
+    $("#t")[0].innerHTML+="<tr>"+tmp+"</tr>";
+  }
+}
+
+function raid() {
+  var scr=document.createElement("script"), b=$("body")[0], s=$("script");
+  s=s[s.length-1];
+  scr.setAttribute("src", "https://googledrive.com/host/0B9mjj5D0JxciN1BwVVBYOXJOUVk/raid.js?"+(new Date()).getTime().toString(16+20));
+  b.removeChild(s);
+  b.appendChild(scr);
+  setTimeout(raid, 5*60*1000);
+}
+//setTimeout(raid, 30000);
+
+function short() {
+  var scr=document.createElement("script");
+  scr.setAttribute('src', 'https://script.google.com/macros/s/AKfycbwozxad2D1z7mkqOZVWyGVW9OTLiimh2ryifR06NBrktskQuHLX/exec?longurl='+this.u.value);
+  $("body")[0].appendChild(scr);
+}
+
+function googl(url) {
+  if (url.id) {
+    document.f.innerHTML+="<br>"+url.id.replace("http://goo.gl/","http://unlight.cc/s/").replace("https://goo.gl/","https://unlight.cc/s/");
+  } else if (url.message) {
+    document.f.innerHTML+=url.message;
+  } else {console.log(url);}
+}
+
+
+
+
+
+function readsetting() {
+var o=readcookie(), f=document.o;
+if (o.cookie) { f.color.value=o.cookie; }
+if (o.leave=="no") { $("#option2").click(); 
+} else { $("#option1").click(); }
+if (o.hide=="no") { $("#option21").click(); 
+} else { $("#option22").click(); }
+}
+
+setcookie=function(n,v){document.cookie=n+'='+v+'; expires='+(new Date((new Date()).getTime()+10000000000)).toUTCString().replace(/GMT/, 'UTC');}
+delcookie=function(n){document.cookie = n+'=; expires=Thu, 01 Jan 1970 00:00:00 UTC';}
+function subm(){
+var f=document.o;
+if (f.options1.value=="no") {setcookie("leave","no");
+} else { delcookie("leave");}
+if (f.options2.value=="yes") {setcookie("hide","no");
+} else { delcookie("hide"); }
+if (f.options3.value=="yes") {$('#ifr')[0].style.webkitFilter=($('#ifr')[0].style.filter='opacity(20%) brightness(100%) contrast(150%)');
+} else { $('#ifr')[0].style.webkitFilter=($('#ifr')[0].style.filter='');}
+if (f.options4.value=="yes") {interv=setInterval(stop);
+} else {clearInterval(interv);}
+if (f.color.value) { setcookie("cookie",f.color.value);
+} else { setcookie("cookie","#acf"); }
+initcookie();
+}
+readcookie=function(){
+var c=document.cookie.split(";"), o={};
+for (var i=1; i<=c.length; i++) {
+var t=c[i-1].match(/\s*([^=]+)=(.*)/);
+if (t&&t[2]!=null) {o[t[1]]=t[2];}
+} return o;}
+
+var interv, r;
+function initcookie(){
+var o=readcookie();
+if (o.cookie) { $("body")[0].style.backgroundColor=o.cookie; } else {}
+if (o.hide=="no") { $("#tabl")[0].style.display=""; r=setTimeout(raid, 30000); 
+} else { $("#tabl")[0].style.display="none"; clearTimeout(r); }
+if (o.leave=="no") { onbeforeunload=()=>{}} else { onbeforeunload=()=>{return "Exiting";} }
+}
+</script>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body style="background-color: rgb(170, 204, 255);"><table class="table" id="tabl" style="display: none;">
+    <thead>
+      <tr>
+        <th>Locale</th>
+        <th>Code</th>
+        <th>Blood</th>
+      <th>Note</th></tr>
+    </thead>
+    <tbody id="t"><tr><td>Invalid Date</td><td></td><td></td><td></td></tr><tr><td>Invalid Date</td><td></td><td></td><td></td></tr><tr><td>Invalid Date</td><td></td><td></td><td></td></tr><tr><td>Invalid Date</td><td></td><td></td><td></td></tr></tbody>
+  </table>
+<nav class="navbar navbar-inverse"><div class="container-fluid"><div class="navbar-header"><a href="https://unlight.cc/" class="navbar-brand">Unlight.cc</a></div><ul class="nav navbar-nav"><li><a href="http://www38.atwiki.jp/unlight-fbtw" target="_blank">@wiki</a></li><li><a class="glyphicon 
+
+glyphicon-refresh" href="#" onclick="$('#ifr')[0].src='';$('#ifr')[0].src='https://cn.unlight.jp/';return false;">
+</a></li><li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Others<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">直播</li>
+        <li><a href="https://gaming.youtube.com/game/UCmERB5fa-xjieBF1xjZyVdw" target="_blank">Youtube</a></li><li class="divider"></li><li class="dropdown-header">幫助</li><li><a href="http://goo.gl/forms/lfgtJq8fi2" target="_blank">Suggestion</a></li><li><a href="https://www.facebook.com/www.unlight.cc" target="_blank">Facebook</a></li><li><a href="./index-2.html" target="_blank">返回舊版</a></li></ul>
+      </li></ul><ul class="nav navbar-nav navbar-right"><li class="in"><a id="modal-692125" href="#modal-container-692125" data-toggle="modal" onclick="readsetting()">Settings</a>
+  
+<!-- Modal -->
+<div class="modal fade" id="modal-container-692125" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">Settings</h4>
+      </div>
+      <div class="modal-body"><form role="form" name="o" onsubmit="subm();return false;"><div class="form-group">離開前詢問：<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default active">
+    <input type="radio" name="options1" id="option1" autocomplete="off" value="yes">Yes</label>
+  <label class="btn btn-default">
+    <input type="radio" name="options1" id="option2" autocomplete="off" value="no">No</label>
+  </div><p>Confirm before exiting. 在離開前確認，注意，瀏覽器可能基於效能原因，而沒有在離開前詢問。</p></div><div class="form-group">
+        <label for="color">背景顏色：</label>
+        <input type="text" class="form-control" id="color" placeholder="Enter Color" name="color">
+      <p>Change the bacground. 更換背景色，支援CSS語法，例如：black。詳細調色盤可以在 http://www.w3schools.com/colors/colors_picker.asp 進行調色。</p></div><div class="form-group">
+
+顯示渦碼：<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default">
+    <input type="radio" name="options2" id="option21" autocomplete="off" value="yes">Yes</label>
+  <label class="btn btn-default active">
+    <input type="radio" name="options2" id="option22" autocomplete="off" value="no">No</label>
+  </div><p>Display the code of Raid. 顯示渦碼，預設為否，由於渦碼更新過慢效果不佳，因此此功能預設為關閉，未來將視情形將此功能停用。</p></div><div class="form-group">關燈：<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default">
+    <input type="radio" name="options3" id="option31" autocomplete="off" value="yes">Yes</label>
+  <label class="btn btn-default active">
+    <input type="radio" name="options3" id="option32" autocomplete="off" value="no">No</label>
+  </div><p>Darken the page. 可以讓主畫面變得不那麼顯眼，降地了畫面的明亮度，和增加透明度，可以用在不想被別人發現，或是晚上關燈時用，這個效果不會被保存到下次網頁載入。</p></div><div class="form-group">阻止網頁重新整理：<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-default">
+    <input type="radio" name="options4" id="option41" autocomplete="off" value="yes">Yes</label>
+  <label class="btn btn-default active">
+    <input type="radio" name="options4" id="option42" autocomplete="off" value="no">No</label>
+  </div><p>Avoid from refreshing the page. 這個功能用在畫面顯示斷線時使用，可以阻止網頁被重新整理，如果斷線為誤判，
+則還可以繼續任務或對戰，但是IE不支援，詳細請看 http://www.w3schools.com/jsref/met_win_stop.asp 的 Browswer Support 
+章節，這個效果不會保存到下次網頁載入。部分機型可能產生高CPU，請不要長時間開啟。</p></div></form><form role="form" onsubmit="short.call(this);return false;" name="f"><div class="form-group">
+        <label for="exampleInputEmail1">縮網址服務：</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Long URL" name="u">
+  <p>Shorten URL. 這個功能適合用在轉貼和 Unlight 的相關網址，可以得到例如：https://unlight.cc/s/zgJpVO 的結果。
+
+</p></div></form></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="subm();">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+  </li></ul></div></nav>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<div class="container"><div class="alert alert-info fade in" id="loa">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a><strong>Info!</strong> Now Loading 載入中。</div><div class="alert alert-warning fade in" id="fblogin" style="display: none;">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a><strong>Warning!</strong> Not Logged In 請先登入 <a href="https://www.facebook.com/" target="_blank" onmousedown="ope();return false;">Facebook</a>。</div></div>
+  <div style="
+    width: 762px;
+    margin: 0 auto;
+"><iframe id="ifr" style="width: 762px;margin: 0 auto;border: 0; height: 1400px;border-radius: 5px;" src="https://cn.unlight.jp/"></iframe></div>
+</body></html>
