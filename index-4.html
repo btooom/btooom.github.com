@@ -2,7 +2,7 @@
 var w1, mer;
 ope=function(){
 w1=open('http://www.facebook.com/dialog/oauth?client_id=470395029770355&redirect_uri=https%3A%2F%2Funlight.cc%2Fclose.html&display=popup','_blank');
-mer=setInterval(()=>{FB.getLoginStatus((s)=>{if(!(s.status!='connected'&&s.status!='not_authorized')){clearInterval(mer);if(w1!=null){w1.close();}$("#fblogin")[0].style.display="none";$("#ifr")[0].src="";$("#ifr")[0].src="https://cn.unlight.jp/";}},true);},2000);
+mer=setInterval(function(){FB.getLoginStatus(function(s){if(!(s.status!='connected'&&s.status!='not_authorized')){clearInterval(mer);if(w1!=null){w1.close();}$("#fblogin")[0].style.display="none";$("#ifr")[0].src="";$("#ifr")[0].src="https://cn.unlight.jp/";}},true);},2000);
 }
 window.fbAsyncInit=function() {
 FB.init({
@@ -122,7 +122,7 @@ var o=readcookie();
 if (o.cookie) { $("body")[0].style.backgroundColor=o.cookie; } else {}
 if (o.hide=="no") { $("#tabl")[0].style.display=""; r=setTimeout(raid, 30000); 
 } else { $("#tabl")[0].style.display="none"; clearTimeout(r); }
-if (o.leave=="no") { onbeforeunload=()=>{}} else { onbeforeunload=()=>{return "Exiting";} }
+if (o.leave=="no") { onbeforeunload=function(){}} else { onbeforeunload=function(){return "Exiting";} }
 }
 </script>
 
