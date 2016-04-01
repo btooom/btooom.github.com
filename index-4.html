@@ -1,8 +1,8 @@
 <script>
 var w1, mer;
-ope=function(){
+function ope(){
 w1=open('http://www.facebook.com/dialog/oauth?client_id=470395029770355&redirect_uri=https%3A%2F%2Funlight.cc%2Fclose.html&display=popup','_blank');
-mer=setInterval(function(){FB.getLoginStatus(function(s){if(!(s.status!='connected'&&s.status!='not_authorized')){clearInterval(mer);if(w1!=null){w1.close();}$("#fblogin")[0].style.display="none";$("#ifr")[0].src="";$("#ifr")[0].src="https://cn.unlight.jp/";}},true);},2000);
+if(!mer){mer=setInterval(function(){FB.getLoginStatus(function(s){if(!(s.status!='connected'&&s.status!='not_authorized')){clearInterval(mer);if(w1!=null){w1.close();}$("#fblogin")[0].style.display="none";$("#ifr")[0].src="";$("#ifr")[0].src="https://cn.unlight.jp/";}},true);},2000);}
 }
 window.fbAsyncInit=function() {
 FB.init({
