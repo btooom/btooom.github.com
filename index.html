@@ -202,9 +202,16 @@ glyphicon-refresh" href="#" onclick="$('#ifr')[0].src='';$('#ifr')[0].src='https
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-<div class="container"><div class="alert alert-info fade in" id="loa">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a><strong>Info!</strong> Now Loading 載入中。</div><div class="alert alert-warning fade in" id="fblogin" style="display: none;">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a><strong>Warning!</strong> Not Logged In 請先登入 <a href="https://www.facebook.com/" target="_blank" onmousedown="ope();return false;">Facebook</a>。</div></div>
+<div class="container">
+  <div class="alert alert-info fade in" id="loa">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a><strong>Info!</strong> Now Loading 載入中。</div>
+  <div class="alert alert-warning fade in" id="fblogin" style="display: none;">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a><strong>Warning!</strong> Not Logged In 請先登入 <a href="https://www.facebook.com/" target="_blank" onmousedown="ope();return false;">Facebook</a>。</div>
+  <div class="alert alert-info fade in">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close" id="closeinfo">×</a>
+  <strong>Info!</strong><ul><li>之前有反應說無法進入，原因是框架頁需要認證，這部分由於消耗主機資源，目前暫時無法開放，需要等到點數機制增加設置後，才有辦法直接不用開Facebook就可以認證。</li><li>登入功能開放前，無法登入的暫時解決方法，可能是快速整理正版Facebook網頁後，在網頁畫面出現Loading前，快速關掉，然後快速整理本頁然後登入，上述方法不一定有用。</li><li>由於<a href="https://support.google.com/drive/answer/2881970" target="_blank">Google公告</a>免費網頁空間服務於2016年8月31日起關閉服務，因此停止原本的網站，新網站有許多問題，目前要用Google Chrome才不會有問題，未來再對新版的問題修理。<a href="./index-5.html" target="_blank">舊版網頁網址。</a></li></ul>
+</div><script>setTimeout('document.all.closeinfo.click();',8000);</script>
+  </div>
   <div style="
     width: 762px;
     margin: 0 auto;
