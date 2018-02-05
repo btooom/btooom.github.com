@@ -1,0 +1,35 @@
+<script>
+function reqpost(file) {
+  var x=new XMLHttpRequest();
+  x.open('post', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable&access_token='+token);
+  x.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+  x.send('{"name":"'+file.name+'"}');
+  x.onreadystatechange=function() {
+    if (x.readyState==4) {
+      var r=new FileReader();
+      r.readAsArrayBuffer(file);
+      r.onload=function() {reqput(r.result, x.getResponseHeader('Location'));};
+    }
+  }
+}
+function encode(text, mix) { var out=''; for (var i=1; i<=text.length; ii=1) {for (var ii=1; ii<=mix.length; ii++, i++) {out+=text.charCodeAt(i-1)+mix.charCodeAt(ii-1)+',';}}return out;}
+function decode(text, mix) { var out=''; text=text.split(','); for (var i=1; i<=text.length; ii=1) {for (var ii=1; i<=text.length&&ii<=mix.length; ii++, i++) {out+=String.fromCharCode(text[i-1]-mix.charCodeAt(ii-1));}}return out;}
+password=prompt();
+refresh_token=decode('164,162,163,172,160,117,161,157,169,203,183,165,157,139,123,99,98,129,188,203,152,157,171,129,150,153,148,210,165,158,141,150,168,126,128,141,192,201,141,137,120,123,131,161,168', password);
+client_secret=decode('204,217,153,171,106,169,167,159,140,187,187,133,157,103,97,156,143,128,202,198,151,152,156,146', password);
+x=new XMLHttpRequest();
+x.open('post', 'https://www.googleapis.com/oauth2/v4/token?grant_type=refresh_token&refresh_token='+refresh_token+'&client_id=743101496669-bol8234eijjd7d61se5egjm0q90btl41.apps.googleusercontent.com&client_secret='+client_secret);
+x.send();
+x.onreadystatechange=function() {if (x.readyState===4) {token=JSON.parse(x.response).access_token;}}
+function reqput(buf, locate, end) {
+  var x=new XMLHttpRequest();
+  x.open('PUT', locate);
+  end||(end=0);
+  if (buf.byteLength-end>262144) {
+    x.setRequestHeader('Content-Range', `bytes ${end}-${end+262143}/${buf.byteLength}`);
+    x.send(buf.slice(end, end+=262144));
+  } else {
+    x.setRequestHeader('Content-Range', `bytes ${end}-${buf.byteLength-1}/${buf.byteLength}`);
+    x.send(buf.slice(end, buf.byteLength));}
+  x.onreadystatechange=function() {if (x.status==308) {reqput(buf, locate, end);}};
+}</script><input type=file onchange=reqpost(this.files[0])>
