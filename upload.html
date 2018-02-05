@@ -20,7 +20,7 @@ client_secret=decode('204,217,153,171,106,169,167,159,140,187,187,133,157,103,97
 x=new XMLHttpRequest();
 x.open('post', 'https://www.googleapis.com/oauth2/v4/token?grant_type=refresh_token&refresh_token='+refresh_token+'&client_id=743101496669-bol8234eijjd7d61se5egjm0q90btl41.apps.googleusercontent.com&client_secret='+client_secret);
 x.send();
-x.onreadystatechange=function() {if (x.readyState===4) {token=JSON.parse(x.response).access_token;}}
+x.onreadystatechange=function() {if (x.readyState===4) {token=JSON.parse(x.response).access_token;}};
 function reqput(buf, locate, end) {
   var x=new XMLHttpRequest();
   x.open('PUT', locate);
