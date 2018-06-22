@@ -1,11 +1,25 @@
-<body>
-<canvas id="h"></canvas><canvas id="w" width="640" style="filter: contrast(2);"></canvas><video id="v" controls=""></video>
+<!--script=document.createElement('script'); script.src=''; document.head.appendChild(script);
+document.body.innerHTML='';--><div><canvas id="w"></canvas><video id="v" hidden=""></video><canvas hidden="" class="drawingBuffer" id="h"></canvas></div><textarea style="width: 100%; height: 50%;" id="t"></textarea>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script>
 <script>
-navigator.mediaDevices.enumerateDevices().then(devices=>{var s='<select>', div=document.createElement('div'); devices.forEach(function(el) {s+='<option value="'+el.deviceId+'">'+el.kind+' '+(el.deviceId.length>20?el.deviceId.slice(0, 20)+'...':el.deviceId)+'</option>';}); document.body.appendChild(div); div.innerHTML=s; div.firstChild.onchange=function() {navigator.mediaDevices.getUserMedia({video: {deviceId: this.value}}).then(s=>{v.srcObject=s; v.play(); navigator.mediaDevices.enumerateDevices().then(v=>{v.forEach(v=>{console.log(v.deviceId, this); if (v.deviceId==this.value) {this.selectedOptions[0].innerText+=v.label;}});});});};});
-c=h.getContext('2d');
-d=w.getContext('2d');
-c.strokeStyle='red';
-c.lineWidth=1;
-v.ontimeupdate=function() {c.drawImage(v,0,0,v.videoWidth,v.videoHeight,0,0,h.width,h.height); c.strokeRect(parseInt(h.width/4-1),parseInt(h.height/2-1),parseInt(h.width/2),3); d.drawImage(v,parseInt(v.videoWidth/4),parseInt(v.videoHeight/2),parseInt(v.videoWidth/2),1,0,0,w.width,w.height);};
+Quagga.init({
+    inputStream : {
+      name: "Live",
+      type: "LiveStream",
+      constraints: {facingMode: "environment"},
+      area: {top: "33%", bottom: "33%"},
+      target: 'div'
+    },
+    decoder: {readers: ["ean_reader"]}
+  }, function(err) {
+      if (err) {console.log(err);return;}
+      console.log("Initialization finished. Ready to start");
+      Quagga.start(); started=true;
+  });
+Quagga.onProcessed(function(data) {if (data) {if (data.boxes){box=[parseInt(data.boxes[0][0][0]*w.width/h.width),parseInt(data.boxes[0][0][1]*w.height/h.height),parseInt((data.boxes[0][2][0]-data.boxes[0][0][0])*w.width/h.width),parseInt((data.boxes[0][2][1]-data.boxes[0][0][1])*w.height/h.height)];} if (data.codeResult) {Quagga.stop(); if (started) {t.value+=data.codeResult.code; started=false;}}}}); started=false;
+box=[0,0,0,0];
+v.ontimeupdate=function() {c.drawImage(v,0,0,v.videoWidth,v.videoHeight,0,0,w.width,w.height); c.strokeRect(...box);};
+c=w.getContext('2d');
+c.strokeStyle='blue';
+c.lineWidth=5;
 </script>
-</body>
