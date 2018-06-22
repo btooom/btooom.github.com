@@ -1,6 +1,6 @@
 <!--script=document.createElement('script'); script.src=''; document.head.appendChild(script);
-document.body.innerHTML='';--><!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body style="height: 100vh;"><div><canvas id="w" onclick="restart();"></canvas><video id="v" hidden=""></video><canvas hidden="" class="drawingBuffer" id="h"></canvas></div><textarea style="width: 100%; height: 80%;" id="t"></textarea>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script>
+document.body.innerHTML='';--><!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body style="height: 100vh;"><div><canvas id="w" onclick="started=true;"></canvas><video id="v" hidden=""></video><canvas hidden="" class="drawingBuffer" id="h"></canvas></div><textarea style="width: 100%; height: 80%;" id="t"></textarea>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.js"></script><audio src="//www.soundjay.com/button/beep-07.wav"></audio>
 <script>
 function restart() {
 Quagga.init({
@@ -17,7 +17,7 @@ Quagga.init({
       console.log("Initialization finished. Ready to start");
       Quagga.start(); started=true;
   });
-Quagga.onProcessed(function(data) {if (data) {if (data.boxes){box=[parseInt(data.boxes[0][0][0]*w.width/h.width),parseInt(data.boxes[0][0][1]*w.height/h.height),parseInt((data.boxes[0][2][0]-data.boxes[0][0][0])*w.width/h.width),parseInt((data.boxes[0][2][1]-data.boxes[0][0][1])*w.height/h.height)];} if (data.codeResult) {Quagga.stop(); if (started) {t.value+=data.codeResult.code; started=false;}}}}); started=false;
+Quagga.onProcessed(function(data) {if (data) {if (data.boxes){box=[parseInt(data.boxes[0][0][0]*w.width/h.width),parseInt(data.boxes[0][0][1]*w.height/h.height),parseInt((data.boxes[0][2][0]-data.boxes[0][0][0])*w.width/h.width),parseInt((data.boxes[0][2][1]-data.boxes[0][0][1])*w.height/h.height)];} if (data.codeResult) {if (started) {beep.play(); t.value+=data.codeResult.code; started=false;}}}}); started=false;
 box=[0,0,0,0];
 v.ontimeupdate=function() {c.drawImage(v,0,0,v.videoWidth,v.videoHeight,0,0,w.width,w.height); c.strokeRect(...box); if (started) {c.strokeStyle='orange'; c.strokeRect(0,parseInt(w.height/3),w.width,parseInt(w.height/3)); c.strokeStyle='blue';}};
 c=w.getContext('2d');
