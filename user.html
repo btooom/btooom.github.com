@@ -1,0 +1,11 @@
+<body>
+<canvas id="h"></canvas><canvas id="w" width="640" style="filter: contrast(2);"></canvas><video id="v" controls=""></video>
+<script>
+navigator.mediaDevices.enumerateDevices().then(devices=>{var s='<select>', div=document.createElement('div'); devices.forEach(function(el) {s+='<option value="'+el.deviceID+'">'+el.kind+' '+(el.deviceId.length>20?el.deviceId.slice(0, 20)+'...':el.deviceId)+'</option>';}); document.body.appendChild(div); div.outerHTML=s; div.onchange=function() {navigator.mediaDevices.getUserMedia({video: {deviceId: this.value}}).then(s=>{v.srcObject=s; v.play(); navigator.mediaDevices.enumerateDevices().then(v=>{v.forEach(v=>{if (v.deviceId==this.value) {this.innerText+=v.label;}});});});};});
+c=h.getContext('2d');
+d=w.getContext('2d');
+c.strokeStyle='red';
+c.lineWidth=1;
+v.ontimeupdate=function() {c.drawImage(v,0,0,v.videoWidth,v.videoHeight,0,0,h.width,h.height); c.strokeRect(parseInt(h.width/4-1),parseInt(h.height/2-1),parseInt(h.width/2),3); d.drawImage(v,parseInt(v.videoWidth/4),parseInt(v.videoHeight/2),parseInt(v.videoWidth/2),1,0,0,w.width,w.height);};
+</script>
+</body>
