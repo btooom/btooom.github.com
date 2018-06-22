@@ -1,7 +1,7 @@
 <body>
 <canvas id="h"></canvas><canvas id="w" width="640" style="filter: contrast(2);"></canvas><video id="v" controls=""></video>
 <script>
-navigator.mediaDevices.enumerateDevices().then(devices=>{var s='<select>', div=document.createElement('div'); devices.forEach(function(el) {s+='<option value="'+el.deviceID+'">'+el.kind+' '+(el.deviceId.length>20?el.deviceId.slice(0, 20)+'...':el.deviceId)+'</option>';}); document.body.appendChild(div); div.innerHTML=s; div.firstChild.onchange=function() {navigator.mediaDevices.getUserMedia({video: {deviceId: this.value}}).then(s=>{v.srcObject=s; v.play(); navigator.mediaDevices.enumerateDevices().then(v=>{v.forEach(v=>{console.log(v.deviceId, this.value); if (v.deviceId==this.value) {this.innerText+=v.label;}});});});};});
+navigator.mediaDevices.enumerateDevices().then(devices=>{var s='<select>', div=document.createElement('div'); devices.forEach(function(el) {s+='<option value="'+el.deviceID+'">'+el.kind+' '+(el.deviceId.length>20?el.deviceId.slice(0, 20)+'...':el.deviceId)+'</option>';}); document.body.appendChild(div); div.innerHTML=s; div.firstChild.onchange=function() {navigator.mediaDevices.getUserMedia({video: {deviceId: this.value}}).then(s=>{v.srcObject=s; v.play(); navigator.mediaDevices.enumerateDevices().then(v=>{v.forEach(v=>{console.log(v.deviceId, this); if (v.deviceId==this.value) {this.innerText+=v.label;}});});});};});
 c=h.getContext('2d');
 d=w.getContext('2d');
 c.strokeStyle='red';
